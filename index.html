@@ -3,42 +3,33 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>さっぽろ保育園マップ by Code for Sapporo</title>
+        <title>高齢者介護Map by OpenData 浜名湖</title>
         <link rel="stylesheet" href="css/ol.css" type="text/css">
         <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
         <link rel="stylesheet" href="css/bootstrap.css.map" type="text/css">
         <link rel="stylesheet" href="css/jquery.mobile-1.4.4.css">
         <link rel="stylesheet" href="css/base.css" type="text/css">
         <link rel="stylesheet" href="css/icon-pack-custom.css">
-        <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-54609451-2', 'auto');
-        ga('send', 'pageview');
-        </script>
     </head>
     <body>
         <div data-role="page" id="mainPage">
             <div role="main" class="ui-content">
             <div id="nav">
                 <fieldset id="nav1" data-role="controlgroup" data-type="horizontal" data-mini="true">
-                    <label for="cbNinka" id="lblNinka">認可</label>
-                    <input type="checkbox" name="cbNinka" id="cbNinka" checked="checked">
+                    <label for="cbKaigo" id="lblKaigo">介護施設</label>
+                    <input type="checkbox" name="cbKaigo" id="cbKaigo" checked="checked">
 
-                    <label for="cbNinkagai" id="lblNinkagai">認可外</label>
-                    <input type="checkbox" name="cbNinkagai" id="cbNinkagai" checked="checked">
+                    <label for="cbIbasho" id="lblIbasho">地域の居場所</label>
+                    <input type="checkbox" name="cbIbasho" id="cbIbasho" checked="checked">
 
-                    <label for="cbKindergarten" id="lblKindergarten">幼</label>
-                    <input type="checkbox" name="cbKindergarten" id="cbKindergarten" checked="checked">
+                    <label for="cbDental" id="lblDental">歯科医院</label>
+                    <input type="checkbox" name="cbDental" id="cbDental" checked="checked">
 
-                    <label for="cbElementarySchool" id="lblElementarySchool">小</label>
-                    <input type="checkbox" name="cbElementarySchool" id="cbElementarySchool">
+                    <label for="cbHospital" id="lblHospital">医院</label>
+                    <input type="checkbox" name="cbHospital" id="cbHospital" checked="checked">
 
-                    <label for="cbMiddleSchool" id="lblMiddleSchool">中</label>
-                    <input type="checkbox" name="cbMiddleSchool" id="cbMiddleSchool">
+                    <label for="cbJichikai" id="lblJichikai">自治会</label>
+                    <input type="checkbox" name="cbJichikai" id="cbJichikai">
 
                     <a id="btnFilter" href="#filterdialog" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-btn-a ui-icon-filter ui-btn-icon-right ui-icon-check">検索</a>
 
@@ -150,16 +141,16 @@
         <div data-role="popup" data-history="false" id="helpDialog" data-theme="a" class="ui-corner-all ui-icon-delete ui-btn-left">
             <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
             <div style="padding:10px 20px;">
-                <h3>さっぽろ保育園マップ</h3>
+                <h3>高齢者介護マップ</h3>
                 <fieldset>
                     <p>
-                    v1.0 (rev.20141130)
+                    v1.0
                     </p>
                     <a href="http://www.codeforsapporo.org/papamama/" target="_blank">詳しくはこちら</a>
                 </fieldset>
                 <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
                     <p>
-                    (C) 2014 <a href="http://www.codeforsapporo.org/" target="_blank">Code for Sapporo.</a>
+                    (C) <a href="http://www.codeforsapporo.org/" target="_blank">オープンデータ浜名湖</a>
                     </p>
                     <a href="#" data-rel="back" id="helpClose" class="ui-btn ui-corner-all ui-btn-a ui-btn-icon-left ui-icon-check">閉じる</a>
                 </fieldset>

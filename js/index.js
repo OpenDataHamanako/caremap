@@ -1,8 +1,5 @@
 // 地図表示時の中心座標
-var init_center_coords = [141.347899, 43.063968];
-
-// Bing APIのキー
-var bing_api_key = 'AhGQykUKW2-u1PwVjLwQkSA_1rCTFESEC7bCZ0MBrnzVbVy7KBHsmLgwW_iRJg17';
+var init_center_coords = [137.53162, 34.718471];
 
 // map
 var map;
@@ -15,48 +12,18 @@ var moveToList = [];
 
 // マップサーバ一覧
 var mapServerList = {
-	'bing-road': {
-		label: "標準(Bing)",
-		source_type: "bing",
-		source: new ol.source.BingMaps({
-			culture: 'ja-jp',
-			key: bing_api_key,
-			imagerySet: 'Road',
-		})
-	},
-	"cyberjapn-pale": {
-		label: "国土地理院",
-		source_type: "xyz",
-		source: new ol.source.XYZ({
-			attributions: [
-				new ol.Attribution({
-					html: "<a href='http://portal.cyberjapan.jp/help/termsofuse.html' target='_blank'>国土地理院</a>"
-				})
-			],
-			url: "http://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png",
-			projection: "EPSG:3857"
-		})
-	},
 	'osm': {
-		label: "交通",
+		label: "OSM",
 		source_type: "osm",
 		source: new ol.source.OSM({
-			url: "http://{a-c}.tile.thunderforest.com/transport/{z}/{x}/{y}.png",
+			url: "http://{a-c}.tile.osm.org/{z}/{x}/{y}.png",
 			attributions: [
 				ol.source.OSM.DATA_ATTRIBUTION,
-				new ol.Attribution({html: "Tiles courtesy of <a href='http://www.thunderforest.com/' target='_blank'>Andy Allan</a>"})
+				new ol.Attribution({html: "'&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"})
 			]
 		})
-	},
-	'bing-aerial': {
-		label: "写真",
-		source_type: "bing",
-		source: new ol.source.BingMaps({
-			culture: 'ja-jp',
-			key: bing_api_key,
-			imagerySet: 'Aerial',
-		})
 	}
+
 };
 
 /**
@@ -85,7 +52,7 @@ $('#mainPage').on('pageshow', function() {
 	// 地図レイヤー定義
 	var papamamap = new Papamamap();
 	papamamap.viewCenter = init_center_coords;
-	papamamap.generate(mapServerList['bing-road']);
+	papamamap.generate(mapServerList['osm']);
 	map = papamamap.map;
 
 	// 保育施設の読み込みとレイヤーの追加
@@ -196,30 +163,30 @@ $('#mainPage').on('pageshow', function() {
 	});
 
 	// 幼稚園チェックボックスのイベント設定
-	$('#cbKindergarten').click(function() {
+	$('#cbDental').click(function() {
 		papamamap.switchLayer(this.id, $(this).prop('checked'));
 	});
 
 	// 認可保育所チェックボックスのイベント設定
-	$('#cbNinka').click(function() {
+	$('#cbKaigo').click(function() {
 		papamamap.switchLayer(this.id, $(this).prop('checked'));
 	});
 
 	// 認可外保育所チェックボックスのイベント設定
-	$('#cbNinkagai').click(function() {
+	$('#cbIbasho').click(function() {
 		papamamap.switchLayer(this.id, $(this).prop('checked'));
 	});
 
 	// 中学校区チェックボックスのイベント定義
-	$('#cbMiddleSchool').click(function() {
+	$('#cbJichikai').click(function() {
 		layer = map.getLayers().item(1);
 		layer.setVisible($(this).prop('checked'));
 	});
 
 	// 小学校区チェックボックスのイベント定義
-	$('#cbElementarySchool').click(function() {
-		layer = map.getLayers().item(2);
-		layer.setVisible($(this).prop('checked'));
+	$('#cbHospital').click(function() {
+
+		papamamap.switchLayer(this.id, $(this).prop('checked'));
 	});
 
 	// 現在地に移動するボタンのイベント定義
@@ -293,7 +260,7 @@ $('#mainPage').on('pageshow', function() {
 	$('#filterApply').click(function(evt){
 		// 条件作成処理
 		conditions = [];
-		ninka = ninkagai = kindergarten = false;
+		ninka = ninkagai = kindergarten = hospital = false;
 
 		// 認可保育園
 		if($('#ninkaOpenTime option:selected').val() !== "") {
@@ -350,11 +317,11 @@ $('#mainPage').on('pageshow', function() {
 		} else {
 			papamamap.addNurseryFacilitiesLayer(nurseryFacilities);
 			$('#btnFilter').css('background-color', '#f6f6f6');
-			ninka = ninkagai = kindergarten = true;
+			ninka = ninkagai = kindergarten = hospital = true;
 		}
 
 		// レイヤー表示状態によって施設の表示を切り替える
-		updateLayerStatus({ninka: ninka, ninkagai: ninkagai, kindergarten: kindergarten});
+		updateLayerStatus({ninka: ninka, ninkagai: ninkagai, kindergarten: kindergarten, hospital :hospital});
 	});
 
 	// 絞込条件のリセット
@@ -384,12 +351,15 @@ $('#mainPage').on('pageshow', function() {
 	 */
 	function updateLayerStatus(checkObj)
 	{
-		papamamap.switchLayer($('#cbNinka').prop('id'), checkObj.ninka);
-		papamamap.switchLayer($('#cbNinkagai').prop('id'), checkObj.ninkagai);
-		papamamap.switchLayer($('#cbKindergarten').prop('id'), checkObj.kindergarten);
-		$('#cbNinka').prop('checked', checkObj.ninka).checkboxradio('refresh');
-		$('#cbNinkagai').prop('checked', checkObj.ninkagai).checkboxradio('refresh');
-		$('#cbKindergarten').prop('checked', checkObj.kindergarten).checkboxradio('refresh');
+		papamamap.switchLayer($('#cbKaigo').prop('id'), checkObj.ninka);
+		papamamap.switchLayer($('#cbIbasho').prop('id'), checkObj.ninkagai);
+		papamamap.switchLayer($('#cbDental').prop('id'), checkObj.kindergarten);
+		papamamap.switchLayer($('#cbHospital').prop('id'), checkObj.hospital);
+		$('#cbKaigo').prop('checked', checkObj.ninka).checkboxradio('refresh');
+		$('#cbIbasho').prop('checked', checkObj.ninkagai).checkboxradio('refresh');
+		$('#cbDental').prop('checked', checkObj.kindergarten).checkboxradio('refresh');
+		$('#cbHospital').prop('checked', checkObj.hospital).checkboxradio('refresh');
+
 	}
 
 	/**

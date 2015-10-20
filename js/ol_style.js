@@ -4,9 +4,10 @@
  */
 var featureStyleList = {
 	'default': { color: 'rgba(153, 153, 153, 1)', img: 'image/018.png'},
-	'認可外': { color: '#0362A0', img: 'image/019.png'},
-	'幼稚園': { color: '#FF5C24', img: 'image/029.png'},
-	'認可保育所': { color: '#6EE100', img: 'image/018.png'}
+	'地域の居場所': { color: '#0362A0', img: 'image/019.png'},
+	'歯科医院': { color: '#FF5C24', img: 'image/dentist.png'},
+	'介護施設': { color: '#6EE100', img: 'image/018.png'},
+	'医院': { color: '#6EE1FF', img: 'image/hospital.png'}
 };
 
 /**
@@ -15,11 +16,11 @@ var featureStyleList = {
  * @param  {[type]} resolution [description]
  * @return {[type]}            [description]
  */
-var ninkaStyleFunction = function(feature, resolution)
+var kaigoStyleFunction = function(feature, resolution)
 {
 	var facilityTypeName = feature.get('種別') ? feature.get('種別') : feature.get('Type');
 	var style = [];
-	if(facilityTypeName === "認可保育所") {
+	if(facilityTypeName === "介護施設") {
 		featureStyle = featureStyleList[facilityTypeName];
 		style        = nurseryStyleFunction(feature, resolution, featureStyle);
 	}
@@ -32,11 +33,11 @@ var ninkaStyleFunction = function(feature, resolution)
  * @param  {[type]} resolution [description]
  * @return {[type]}            [description]
  */
-var ninkagaiStyleFunction = function(feature, resolution)
+var ibashoStyleFunction = function(feature, resolution)
 {
 	var facilityTypeName = feature.get('種別') ? feature.get('種別') : feature.get('Type');
 	var style = [];
-	if(facilityTypeName === "認可外") {
+	if(facilityTypeName === "地域の居場所") {
 		featureStyle = featureStyleList[facilityTypeName];
 		style        = nurseryStyleFunction(feature, resolution, featureStyle);
 	}
@@ -49,11 +50,28 @@ var ninkagaiStyleFunction = function(feature, resolution)
  * @param  {[type]} resolution [description]
  * @return {[type]}            [description]
  */
-var kindergartenStyleFunction = function(feature, resolution)
+var dentalStyleFunction = function(feature, resolution)
 {
 	var facilityTypeName = feature.get('種別') ? feature.get('種別') : feature.get('Type');
 	var style = [];
-	if(facilityTypeName === "幼稚園") {
+	if(facilityTypeName === "歯科医院") {
+		featureStyle = featureStyleList[facilityTypeName];
+		style        = nurseryStyleFunction(feature, resolution, featureStyle);
+	}
+	return style;
+};
+
+/**
+ * 医院向けスタイル
+ * @param  {[type]} feature    [description]
+ * @param  {[type]} resolution [description]
+ * @return {[type]}            [description]
+ */
+var hospitalStyleFunction = function(feature, resolution)
+{
+	var facilityTypeName = feature.get('種別') ? feature.get('種別') : feature.get('Type');
+	var style = [];
+	if(facilityTypeName === "医院") {
 		featureStyle = featureStyleList[facilityTypeName];
 		style        = nurseryStyleFunction(feature, resolution, featureStyle);
 	}

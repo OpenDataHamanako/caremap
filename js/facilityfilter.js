@@ -18,11 +18,11 @@ FacilityFilter.prototype.getFilteredFeaturesGeoJson = function (conditions, nurs
     };
     // console.log("getFilteredFeaturesGeoJson");
 
-    // 認可保育園の検索元データを取得
+    // 通所介護の検索元データを取得
     var ninkaFeatures = [];
     _features = nurseryFacilities.features.filter(function (item,idx) {
             var type = item.properties['種別'] ? item.properties['種別'] : item.properties['Type'];
-            if(type == "認可保育所") return true;
+            if(type == "介護施設") return true;
         });
     Array.prototype.push.apply(ninkaFeatures, _features);
 
@@ -30,7 +30,7 @@ FacilityFilter.prototype.getFilteredFeaturesGeoJson = function (conditions, nurs
     var ninkagaiFeatures = [];
     _features = nurseryFacilities.features.filter(function (item,idx) {
             var type = item.properties['種別'] ? item.properties['種別'] : item.properties['Type'];
-            if(type == "認可外") return true;
+            if(type == "地域の居場所") return true;
         });
     Array.prototype.push.apply(ninkagaiFeatures, _features);
 
@@ -38,9 +38,17 @@ FacilityFilter.prototype.getFilteredFeaturesGeoJson = function (conditions, nurs
     var youchienFeatures = [];
     _features = nurseryFacilities.features.filter(function (item,idx) {
             var type = item.properties['種別'] ? item.properties['種別'] : item.properties['Type'];
-            if(type == "幼稚園") return true;
+            if(type == "歯科医院") return true;
         });
     Array.prototype.push.apply(youchienFeatures, _features);
+
+    // 幼稚園の検索元データを取得
+    var hospitalFeatures = [];
+    _features = nurseryFacilities.features.filter(function (item,idx) {
+            var type = item.properties['種別'] ? item.properties['種別'] : item.properties['Type'];
+            if(type == "医院") return true;
+        });
+    Array.prototype.push.apply(hospitalFeatures, _features);
 
     // ----------------------------------------------------------------------
     // 認可保育所向けフィルター
@@ -214,6 +222,7 @@ FacilityFilter.prototype.getFilteredFeaturesGeoJson = function (conditions, nurs
     Array.prototype.push.apply(features, ninkaFeatures);
     Array.prototype.push.apply(features, ninkagaiFeatures);
     Array.prototype.push.apply(features, youchienFeatures);
+    Array.prototype.push.apply(features, hospitalFeatures);
     // console.log("getFilteredFeaturesGeoJson: return value: ", features.length);
     newGeoJson.features = features;
     return newGeoJson;

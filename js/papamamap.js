@@ -163,8 +163,8 @@ Papamamap.prototype.addNurseryFacilitiesLayer = function(facilitiesData)
                 projection: 'EPSG:3857',
                 object: facilitiesData
             }),
-            name: 'layerKindergarten',
-            style: kindergartenStyleFunction
+            name: 'layerKaigo',
+            style: kaigoStyleFunction
         })
     );
     // 認可外
@@ -174,8 +174,8 @@ Papamamap.prototype.addNurseryFacilitiesLayer = function(facilitiesData)
                 projection: 'EPSG:3857',
                 object: facilitiesData
             }),
-            name: 'layerNinkagai',
-            style: ninkagaiStyleFunction
+            name: 'layerIbasho',
+            style: ibashoStyleFunction
         })
     );
     // 認可
@@ -185,8 +185,19 @@ Papamamap.prototype.addNurseryFacilitiesLayer = function(facilitiesData)
                 projection: 'EPSG:3857',
                 object: facilitiesData
             }),
-            name: 'layerNinka',
-            style: ninkaStyleFunction
+            name: 'layerDental',
+            style: dentalStyleFunction
+        })
+    );
+    // 医院
+    this.map.addLayer(
+        new ol.layer.Vector({
+            source: new ol.source.GeoJSON({
+                projection: 'EPSG:3857',
+                object: facilitiesData
+            }),
+            name: 'layerHospital',
+            style: hospitalStyleFunction
         })
     );
 };
@@ -552,6 +563,8 @@ Papamamap.prototype.getLayerName = function(cbName)
  */
 Papamamap.prototype.switchLayer = function(layerName, visible) {
     var _layerName = this.getLayerName(layerName.substr(2));
+    console.log(_layerName);
+
     this.map.getLayers().forEach(function(layer) {
         if (layer.get('name') == _layerName) {
             layer.setVisible(visible);
