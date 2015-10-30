@@ -6,6 +6,9 @@
 .popover-content {
 	min-width: 300px;
 }
+div#popup-title {
+    padding: 5px;
+}
 #marker, #center_marker {
 	display:none;
 	width: 25px;
@@ -94,8 +97,8 @@
 	content: "x";
 }
 #popup-closer {
-	top: -5px;
-	right: -5px;
+	top: -15px;
+	right: -15px;
 }
 
 #popup-content th {
