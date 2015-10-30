@@ -38,10 +38,10 @@
                         <option>背景</option>
                     </select>
 
-                    <label for="moveTo">最寄駅</label>
+<!--                     <label for="moveTo">最寄駅</label>
                     <select id="moveTo" data-mini="true">
                         <option>最寄駅</option>
-                    </select>
+                    </select> -->
 
                     <label id="lblDisplayCircle" for="cbDisplayCircle" class="ui-btn-icon-notext">距離円<span class="ui-icon-bullseye ui-btn-icon-notext"></span></label>
                     <input type="checkbox" id="cbDisplayCircle" name="cbDisplayCircle" data-mini="true"/>
@@ -75,8 +75,25 @@
             <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
             <form>
                 <div style="padding:10px 20px;">
-                    <h3>保育施設 絞り込み</h3>
-                    <legend>認可保育園</legend>
+                    <h3>介護施設 絞り込み</h3>
+                    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                    <label for="subtype" class="select">種別</label>
+                        <select id="subtype" class="filtersb">
+                            <option value="">種別</option>
+                            <option value="グループホーム">グループホーム</option>
+                            <option value="ショートステイ">ショートステイ</option>
+                            <option value="小規模多機能">小規模多機能</option>
+                            <option value="通所リハビリ">通所リハビリ</option>
+                            <option value="通所介護">通所介護</option>
+                            <option value="特別養護老人ホーム">特別養護老人ホーム</option>
+                            <option value="認知症対応型">認知症対応型</option>
+                            <option value="訪問介護">訪問介護</option>
+                            <option value="訪問看護">訪問看護</option>
+                            <option value="訪問入浴">訪問入浴</option>
+                            <option value="福祉用具（貸与・販売）">福祉用具（貸与・販売）</option>
+                        </select>
+                    </fieldset>
+                    <!-- <legend>認可保育園</legend>
                     <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
                         <label for="ninkaOpenTime" class="select">開園</label>
                         <select id="ninkaOpenTime" class="filtersb">
@@ -130,7 +147,7 @@
                     <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
                     <label for="ninkagaiShomei">証明書あり</label>
                     <input type="checkbox" id="ninkagaiShomei" class="filtercb">
-                    </fieldset>
+                    </fieldset> -->
                     <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
                         <a href="#" data-rel="back" id="filterApply" class="ui-btn ui-corner-all ui-btn-a ui-btn-icon-left ui-icon-check">条件適用</a>
                         <a href="#" id="filterReset" class="ui-btn ui-corner-all ui-btn-a ui-btn-icon-left ui-icon-delete">リセット</a>

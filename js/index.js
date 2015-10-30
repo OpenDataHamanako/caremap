@@ -261,50 +261,54 @@ $('#mainPage').on('pageshow', function() {
 		// 条件作成処理
 		conditions = [];
 		ninka = ninkagai = kindergarten = hospital = false;
-
 		// 認可保育園
-		if($('#ninkaOpenTime option:selected').val() !== "") {
-			conditions['ninkaOpenTime'] = $('#ninkaOpenTime option:selected').val();
+		if($('#subtype option:selected').val() !== "") {
+			conditions['subtype'] = $('#subtype option:selected').val();
 			ninka = true;
 		}
-		if($('#ninkaCloseTime option:selected').val() !== "") {
-			conditions['ninkaCloseTime'] = $('#ninkaCloseTime option:selected').val();
-			ninka = true;
-		}
-		if($('#ninkaIchijiHoiku').prop('checked')) {
-			conditions['ninkaIchijiHoiku'] = 1;
-			ninka = true;
-		}
-		if($('#ninkaYakan').prop('checked')) {
-			conditions['ninkaYakan'] = 1;
-			ninka = true;
-		}
-		if($('#ninkaKyujitu').prop('checked')) {
-			conditions['ninkaKyujitu'] = 1;
-			ninka = true;
-		}
-		if($('#ninkaVacancy').prop('checked')) {
-			conditions['ninkaVacancy'] = 1;
-			ninka = true;
-		}
+		// // 認可保育園
+		// if($('#ninkaOpenTime option:selected').val() !== "") {
+		// 	conditions['ninkaOpenTime'] = $('#ninkaOpenTime option:selected').val();
+		// 	ninka = true;
+		// }
+		// if($('#ninkaCloseTime option:selected').val() !== "") {
+		// 	conditions['ninkaCloseTime'] = $('#ninkaCloseTime option:selected').val();
+		// 	ninka = true;
+		// }
+		// if($('#ninkaIchijiHoiku').prop('checked')) {
+		// 	conditions['ninkaIchijiHoiku'] = 1;
+		// 	ninka = true;
+		// }
+		// if($('#ninkaYakan').prop('checked')) {
+		// 	conditions['ninkaYakan'] = 1;
+		// 	ninka = true;
+		// }
+		// if($('#ninkaKyujitu').prop('checked')) {
+		// 	conditions['ninkaKyujitu'] = 1;
+		// 	ninka = true;
+		// }
+		// if($('#ninkaVacancy').prop('checked')) {
+		// 	conditions['ninkaVacancy'] = 1;
+		// 	ninka = true;
+		// }
 
-		// 認可外
-		if($('#ninkagaiOpenTime option:selected').val() !== "") {
-			conditions['ninkagaiOpenTime'] = $('#ninkagaiOpenTime option:selected').val();
-			ninkagai = true;
-		}
-		if($('#ninkagaiCloseTime option:selected').val() !== "") {
-			conditions['ninkagaiCloseTime'] = $('#ninkagaiCloseTime option:selected').val();
-			ninkagai = true;
-		}
-		if($('#ninkagai24H').prop('checked')) {
-			conditions['ninkagai24H'] = 1;
-			ninkagai = true;
-		}
-		if($('#ninkagaiShomei').prop('checked')) {
-			conditions['ninkagaiShomei'] = 1;
-			ninkagai = true;
-		}
+		// // 認可外
+		// if($('#ninkagaiOpenTime option:selected').val() !== "") {
+		// 	conditions['ninkagaiOpenTime'] = $('#ninkagaiOpenTime option:selected').val();
+		// 	ninkagai = true;
+		// }
+		// if($('#ninkagaiCloseTime option:selected').val() !== "") {
+		// 	conditions['ninkagaiCloseTime'] = $('#ninkagaiCloseTime option:selected').val();
+		// 	ninkagai = true;
+		// }
+		// if($('#ninkagai24H').prop('checked')) {
+		// 	conditions['ninkagai24H'] = 1;
+		// 	ninkagai = true;
+		// }
+		// if($('#ninkagaiShomei').prop('checked')) {
+		// 	conditions['ninkagaiShomei'] = 1;
+		// 	ninkagai = true;
+		// }
 
 		// 幼稚園
 

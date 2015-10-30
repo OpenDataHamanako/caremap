@@ -353,6 +353,15 @@ Papamamap.prototype.getPopupContent = function(feature)
 {
     var content = '';
     content = '<table><tbody>';
+
+    var subtype = feature.get('SubType');
+    if(subtype !== undefined && subtype !== null && subtype !==""){
+        content += '<tr>';
+        content += '<th>種別</th>';
+        content += '<td>' + subtype + '</td>';
+        content += '</tr>';
+    }
+
     var open  = feature.get('開園時間') ? feature.get('開園時間') : feature.get('Open');
     var close = feature.get('終園時間') ? feature.get('終園時間') : feature.get('Close');
     if (open != undefined && open !== null && open !== "" && close !== undefined && close !== null && close !== "") {
@@ -438,7 +447,7 @@ Papamamap.prototype.getPopupContent = function(feature)
         content += '</tr>';
     }
     var tel = feature.get('TEL') ? feature.get('TEL') : feature.get('TEL');
-    if (tel !== undefined && tel !== null) {
+    if (tel !== undefined && tel !== null && tel !== "") {
         content += '<tr>';
         content += '<th>TEL</th>';
         content += '<td>' + tel + '</td>';
