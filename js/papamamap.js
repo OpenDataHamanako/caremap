@@ -459,6 +459,14 @@ Papamamap.prototype.getPopupContent = function(feature)
         content += '<td>' + owner + '</td>';
         content += '</tr>';
     }
+    var image = feature.get('image');
+    if(image !== undefined && image !== null){
+        content += '<tr>';
+        content += '<th></th>';
+        content += '<td><img src="' + image + '" width="98%"></td>';
+        content += '</tr>';
+
+    }
     content += '</tbody></table>';
     return content;
 };
