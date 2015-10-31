@@ -46,7 +46,9 @@ div#popup-title {
 #lblHospital.ui-checkbox-on {
 	background-color: #1BA466;
 }
-
+#lblSalon.ui-checkbox-on {
+	background-color: #AA0000;
+}
 .ol-popup {
 	display: none;
 	position: absolute;

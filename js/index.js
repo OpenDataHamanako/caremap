@@ -189,6 +189,12 @@ $('#mainPage').on('pageshow', function() {
 		papamamap.switchLayer(this.id, $(this).prop('checked'));
 	});
 
+	// 小学校区チェックボックスのイベント定義
+	$('#cbSalon').click(function() {
+
+		papamamap.switchLayer(this.id, $(this).prop('checked'));
+	});
+
 	// 現在地に移動するボタンのイベント定義
 	$('#moveCurrentLocation').click(function(evt){
 		control = new MoveCurrentLocationControl();

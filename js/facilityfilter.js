@@ -49,6 +49,14 @@ FacilityFilter.prototype.getFilteredFeaturesGeoJson = function (conditions, nurs
         });
     Array.prototype.push.apply(hospitalFeatures, _features);
 
+    // いきいきサロンの検索元データを取得
+    var salonFeatures = [];
+    _features = nurseryFacilities.features.filter(function (item,idx) {
+            var type = item.properties['種別'] ? item.properties['種別'] : item.properties['Type'];
+            if(type == "いきいきサロン") return true;
+        });
+    Array.prototype.push.apply(salonFeatures, _features);
+
     // ----------------------------------------------------------------------
     // 介護施設向けフィルター
     // ----------------------------------------------------------------------
@@ -240,6 +248,7 @@ FacilityFilter.prototype.getFilteredFeaturesGeoJson = function (conditions, nurs
     Array.prototype.push.apply(features, ninkagaiFeatures);
     Array.prototype.push.apply(features, youchienFeatures);
     Array.prototype.push.apply(features, hospitalFeatures);
+    Array.prototype.push.apply(features, salonFeatures);
     console.log("getFilteredFeaturesGeoJson: return value: ", features.length);
     newGeoJson.features = features;
     return newGeoJson;
