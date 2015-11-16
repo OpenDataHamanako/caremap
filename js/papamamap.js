@@ -480,7 +480,7 @@ Papamamap.prototype.getPopupContent = function(feature)
         content += '</tr>';
     }
     var image = feature.get('image');
-    if(image !== undefined && image !== null){
+    if(image !== undefined && image !== null && image != ""){
         content += '<tr>';
         content += '<th></th>';
         content += '<td><img src="' + image + '" width="98%"></td>';
