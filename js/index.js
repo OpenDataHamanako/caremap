@@ -179,7 +179,7 @@ $('#mainPage').on('pageshow', function() {
 
 	// 中学校区チェックボックスのイベント定義
 	$('#cbJichikai').click(function() {
-		layer = map.getLayers().item(1);
+		layer = map.getLayers().item(2);
 		layer.setVisible($(this).prop('checked'));
 	});
 
