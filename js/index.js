@@ -55,7 +55,7 @@ $('#mainPage').on('pageshow', function() {
 	papamamap.generate(mapServerList['osm']);
 	map = papamamap.map;
 
-	// 保育施設の読み込みとレイヤーの追加
+	// 施設の読み込みとレイヤーの追加
 	papamamap.loadNurseryFacilitiesJson(function(data){
 		nurseryFacilities = data;
 	}).then(function(){
@@ -75,16 +75,16 @@ $('#mainPage').on('pageshow', function() {
 	}
 
 	// 最寄駅セレクトボックスの生成
-	mtl = new MoveToList();
-	mtl.loadStationJson().then(function() {
-		mtl.appendToMoveToListBox(moveToList);
-	}, function(){
-		mtl.loadStationJson().then(function() {
-			mtl.appendToMoveToListBox(moveToList);
-		});
-	});
+	// mtl = new MoveToList();
+	// mtl.loadStationJson().then(function() {
+	// 	mtl.appendToMoveToListBox(moveToList);
+	// }, function(){
+	// 	mtl.loadStationJson().then(function() {
+	// 		mtl.appendToMoveToListBox(moveToList);
+	// 	});
+	// });
 
-	// 保育施設クリック時の挙動を定義
+	// 施設クリック時の挙動を定義
 	map.on('click', function(evt) {
 		if ( $('#popup').is(':visible') ) {
 			// ポップアップを消す
@@ -162,34 +162,34 @@ $('#mainPage').on('pageshow', function() {
 		drawMarker(pos, label);
 	});
 
-	// 幼稚園チェックボックスのイベント設定
+	// 歯科医院チェックボックスのイベント設定
 	$('#cbDental').click(function() {
 		papamamap.switchLayer(this.id, $(this).prop('checked'));
 	});
 
-	// 認可保育所チェックボックスのイベント設定
+	// 介護施設チェックボックスのイベント設定
 	$('#cbKaigo').click(function() {
 		papamamap.switchLayer(this.id, $(this).prop('checked'));
 	});
 
-	// 認可外保育所チェックボックスのイベント設定
+	// 地域の居場所チェックボックスのイベント設定
 	$('#cbIbasho').click(function() {
 		papamamap.switchLayer(this.id, $(this).prop('checked'));
 	});
 
-	// 中学校区チェックボックスのイベント定義
+	// 自治会チェックボックスのイベント定義
 	$('#cbJichikai').click(function() {
 		layer = map.getLayers().item(2);
 		layer.setVisible($(this).prop('checked'));
 	});
 
-	// 小学校区チェックボックスのイベント定義
+	// 病院チェックボックスのイベント定義
 	$('#cbHospital').click(function() {
 
 		papamamap.switchLayer(this.id, $(this).prop('checked'));
 	});
 
-	// 小学校区チェックボックスのイベント定義
+	// いきいきサロンチェックボックスのイベント定義
 	$('#cbSalon').click(function() {
 
 		papamamap.switchLayer(this.id, $(this).prop('checked'));
@@ -266,58 +266,12 @@ $('#mainPage').on('pageshow', function() {
 	$('#filterApply').click(function(evt){
 		// 条件作成処理
 		conditions = [];
-		ninka = ninkagai = kindergarten = hospital = false;
-		// 認可保育園
+		kaigo = ibasho = dental = salon = hospital = false;
+		// 介護施設
 		if($('#subtype option:selected').val() !== "") {
 			conditions['subtype'] = $('#subtype option:selected').val();
-			ninka = true;
+			kaigo = true;
 		}
-		// // 認可保育園
-		// if($('#ninkaOpenTime option:selected').val() !== "") {
-		// 	conditions['ninkaOpenTime'] = $('#ninkaOpenTime option:selected').val();
-		// 	ninka = true;
-		// }
-		// if($('#ninkaCloseTime option:selected').val() !== "") {
-		// 	conditions['ninkaCloseTime'] = $('#ninkaCloseTime option:selected').val();
-		// 	ninka = true;
-		// }
-		// if($('#ninkaIchijiHoiku').prop('checked')) {
-		// 	conditions['ninkaIchijiHoiku'] = 1;
-		// 	ninka = true;
-		// }
-		// if($('#ninkaYakan').prop('checked')) {
-		// 	conditions['ninkaYakan'] = 1;
-		// 	ninka = true;
-		// }
-		// if($('#ninkaKyujitu').prop('checked')) {
-		// 	conditions['ninkaKyujitu'] = 1;
-		// 	ninka = true;
-		// }
-		// if($('#ninkaVacancy').prop('checked')) {
-		// 	conditions['ninkaVacancy'] = 1;
-		// 	ninka = true;
-		// }
-
-		// // 認可外
-		// if($('#ninkagaiOpenTime option:selected').val() !== "") {
-		// 	conditions['ninkagaiOpenTime'] = $('#ninkagaiOpenTime option:selected').val();
-		// 	ninkagai = true;
-		// }
-		// if($('#ninkagaiCloseTime option:selected').val() !== "") {
-		// 	conditions['ninkagaiCloseTime'] = $('#ninkagaiCloseTime option:selected').val();
-		// 	ninkagai = true;
-		// }
-		// if($('#ninkagai24H').prop('checked')) {
-		// 	conditions['ninkagai24H'] = 1;
-		// 	ninkagai = true;
-		// }
-		// if($('#ninkagaiShomei').prop('checked')) {
-		// 	conditions['ninkagaiShomei'] = 1;
-		// 	ninkagai = true;
-		// }
-
-		// 幼稚園
-
 		// フィルター適用時
 		if(Object.keys(conditions).length > 0) {
 			filter = new FacilityFilter();
@@ -327,11 +281,11 @@ $('#mainPage').on('pageshow', function() {
 		} else {
 			papamamap.addNurseryFacilitiesLayer(nurseryFacilities);
 			$('#btnFilter').css('background-color', '#f6f6f6');
-			ninka = ninkagai = kindergarten = hospital = true;
+			kaigo = ibasho = dental = salon = hospital = true;
 		}
 
 		// レイヤー表示状態によって施設の表示を切り替える
-		updateLayerStatus({ninka: ninka, ninkagai: ninkagai, kindergarten: kindergarten, hospital :hospital});
+		updateLayerStatus({kaigo: kaigo, ibasho: ibasho, dental: dental,salon: salon, hospital :hospital});
 	});
 
 	// 絞込条件のリセット
@@ -350,7 +304,7 @@ $('#mainPage').on('pageshow', function() {
 		$('#btnFilter').css('background-color', '#f6f6f6');
 
 		// レイヤー表示状態によって施設の表示を切り替える
-		updateLayerStatus({ninka: true, ninkagai: true, kindergarten: true});
+		updateLayerStatus({kaigo: true, ibasho: true, dental: true,salon: true, hospital :true});
 	});
 
 	/**
@@ -361,14 +315,16 @@ $('#mainPage').on('pageshow', function() {
 	 */
 	function updateLayerStatus(checkObj)
 	{
-		papamamap.switchLayer($('#cbKaigo').prop('id'), checkObj.ninka);
-		papamamap.switchLayer($('#cbIbasho').prop('id'), checkObj.ninkagai);
-		papamamap.switchLayer($('#cbDental').prop('id'), checkObj.kindergarten);
+		papamamap.switchLayer($('#cbKaigo').prop('id'), checkObj.kaigo);
+		papamamap.switchLayer($('#cbIbasho').prop('id'), checkObj.ibasho);
+		papamamap.switchLayer($('#cbDental').prop('id'), checkObj.dental);
 		papamamap.switchLayer($('#cbHospital').prop('id'), checkObj.hospital);
-		$('#cbKaigo').prop('checked', checkObj.ninka).checkboxradio('refresh');
-		$('#cbIbasho').prop('checked', checkObj.ninkagai).checkboxradio('refresh');
-		$('#cbDental').prop('checked', checkObj.kindergarten).checkboxradio('refresh');
+		papamamap.switchLayer($('#cbSalon').prop('id'), checkObj.salon);
+		$('#cbKaigo').prop('checked', checkObj.kaigo).checkboxradio('refresh');
+		$('#cbIbasho').prop('checked', checkObj.ibasho).checkboxradio('refresh');
+		$('#cbDental').prop('checked', checkObj.dental).checkboxradio('refresh');
 		$('#cbHospital').prop('checked', checkObj.hospital).checkboxradio('refresh');
+		$('#cbSalon').prop('checked', checkObj.salon).checkboxradio('refresh');
 
 	}
 
