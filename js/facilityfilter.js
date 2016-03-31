@@ -17,45 +17,13 @@ FacilityFilter.prototype.getFilteredFeaturesGeoJson = function (conditions, nurs
         "features":[]
     };
 
-    // 通所介護の検索元データを取得
-    var ninkaFeatures = [];
+    // 介護の検索元データを取得
+    var kaigoFeatures = [];
     _features = nurseryFacilities.features.filter(function (item,idx) {
             var type = item.properties['種別'] ? item.properties['種別'] : item.properties['Type'];
             if(type == "介護施設") return true;
         });
-    Array.prototype.push.apply(ninkaFeatures, _features);
-
-    // 認可外保育園の検索元データを取得
-    var ninkagaiFeatures = [];
-    _features = nurseryFacilities.features.filter(function (item,idx) {
-            var type = item.properties['種別'] ? item.properties['種別'] : item.properties['Type'];
-            if(type == "地域の居場所") return true;
-        });
-    Array.prototype.push.apply(ninkagaiFeatures, _features);
-
-    // 幼稚園の検索元データを取得
-    var youchienFeatures = [];
-    _features = nurseryFacilities.features.filter(function (item,idx) {
-            var type = item.properties['種別'] ? item.properties['種別'] : item.properties['Type'];
-            if(type == "歯科医院") return true;
-        });
-    Array.prototype.push.apply(youchienFeatures, _features);
-
-    // 幼稚園の検索元データを取得
-    var hospitalFeatures = [];
-    _features = nurseryFacilities.features.filter(function (item,idx) {
-            var type = item.properties['種別'] ? item.properties['種別'] : item.properties['Type'];
-            if(type == "医院") return true;
-        });
-    Array.prototype.push.apply(hospitalFeatures, _features);
-
-    // いきいきサロンの検索元データを取得
-    var salonFeatures = [];
-    _features = nurseryFacilities.features.filter(function (item,idx) {
-            var type = item.properties['種別'] ? item.properties['種別'] : item.properties['Type'];
-            if(type == "いきいきサロン") return true;
-        });
-    Array.prototype.push.apply(salonFeatures, _features);
+    Array.prototype.push.apply(kaigoFeatures, _features);
 
     // ----------------------------------------------------------------------
     // 介護施設向けフィルター
@@ -71,15 +39,12 @@ FacilityFilter.prototype.getFilteredFeaturesGeoJson = function (conditions, nurs
             };
             return f(item,idx);
         };
-        ninkaFeatures = ninkaFeatures.filter(filterfunc);
+
+        kaigoFeatures = kaigoFeatures.filter(filterfunc);
     }
     // 戻り値の作成
     var features = [];
-    Array.prototype.push.apply(features, ninkaFeatures);
-    Array.prototype.push.apply(features, ninkagaiFeatures);
-    Array.prototype.push.apply(features, youchienFeatures);
-    Array.prototype.push.apply(features, hospitalFeatures);
-    Array.prototype.push.apply(features, salonFeatures);
+    Array.prototype.push.apply(features, kaigoFeatures);
     newGeoJson.features = features;
     return newGeoJson;
 };

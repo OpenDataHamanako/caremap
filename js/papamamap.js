@@ -149,11 +149,9 @@ Papamamap.prototype.animatedMove = function(lon, lat, isTransform)
  * @param {[type]} facilitiesData [description]
  */
 Papamamap.prototype.addNurseryFacilitiesLayer = function(facilitiesData)
-{
-    if(this.map.getLayers().getLength() >= 4) {
-        this.map.removeLayer(this.map.getLayers().item(4));
-        this.map.removeLayer(this.map.getLayers().item(4));
-        this.map.removeLayer(this.map.getLayers().item(4));
+{   
+    while(this.map.getLayers().getLength() > 1) {
+        this.map.removeLayer(this.map.getLayers().item(1));
     }
 
     // 幼稚園
@@ -562,10 +560,6 @@ Papamamap.prototype.drawCenterCircle = function(radius, moveToPixel)
         if(ol.extent.containsCoordinate(extent, coordinate))
             return true;
         });
-    for(var i=0; i < _features.length; i++) {
-        console.log(_features[i].properties['名称']);
-    }
-    console.log(_features);
 
     var layer  = this.getLayer(this.getLayerName("Circle"));
     var source = layer.getSource();
@@ -591,7 +585,6 @@ Papamamap.prototype.getLayerName = function(cbName)
  */
 Papamamap.prototype.switchLayer = function(layerName, visible) {
     var _layerName = this.getLayerName(layerName.substr(2));
-    console.log(_layerName);
 
     this.map.getLayers().forEach(function(layer) {
         if (layer.get('name') == _layerName) {
