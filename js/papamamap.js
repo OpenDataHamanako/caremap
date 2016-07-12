@@ -113,8 +113,8 @@ Papamamap.prototype.animatedMove = function(lon, lat, isTransform) {
  * @param {[type]} facilitiesData [description]
  */
 Papamamap.prototype.addNurseryFacilitiesLayer = function(facilitiesData) {
-    while (this.map.getLayers().getLength() > 2) {
-        this.map.removeLayer(this.map.getLayers().item(2));
+    while (this.map.getLayers().getLength() > 3) {
+        this.map.removeLayer(this.map.getLayers().item(3));
     }
     this.map.addLayer(
         new ol.layer.Vector({
