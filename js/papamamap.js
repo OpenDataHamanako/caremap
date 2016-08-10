@@ -25,19 +25,6 @@ Papamamap.prototype.generate = function(mapServerListItem) {
                 source: mapServerListItem.source
             }),
 
-            // 小学校区レイヤーグループ
-
-
-            // 小学校区位置
-            new ol.layer.Vector({
-                source: new ol.source.GeoJSON({
-                    projection: 'EPSG:3857',
-                    url: 'data/Elementary_loc.geojson'
-                }),
-                name: 'layerElementarySchoolLoc',
-                style: elementaryStyleFunction,
-                visible: false
-            }),
 
             // 距離同心円描画用レイヤー
             new ol.layer.Vector({
