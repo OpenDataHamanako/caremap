@@ -95,7 +95,7 @@ Papamamap.prototype.animatedMove = function(lon, lat, isTransform) {
 
 
 /**
- * 指定したgeojsonデータを元に認可外・認可・幼稚園レイヤーを描写する
+ * 指定したgeojsonデータを元に福祉施設のレイヤーを描写する
  *
  * @param {[type]} facilitiesData [description]
  */
@@ -125,7 +125,7 @@ Papamamap.prototype.addNurseryFacilitiesLayer = function(facilitiesData) {
             style: kaigoStyleFunction
         })
     );
-    // 認可外
+    // 地域の居場所
     this.map.addLayer(
         new ol.layer.Vector({
             source: new ol.source.GeoJSON({
@@ -136,7 +136,7 @@ Papamamap.prototype.addNurseryFacilitiesLayer = function(facilitiesData) {
             style: ibashoStyleFunction
         })
     );
-    // 認可
+    // 歯科医院 
     this.map.addLayer(
         new ol.layer.Vector({
             source: new ol.source.GeoJSON({
@@ -323,17 +323,6 @@ Papamamap.prototype.getPopupContent = function(feature) {
         content += '<td>' + subtype + '</td>';
         content += '</tr>';
     }
-
-    var open = feature.get('開園時間') ? feature.get('開園時間') : feature.get('Open');
-    var close = feature.get('終園時間') ? feature.get('終園時間') : feature.get('Close');
-    if (open != undefined && open !== null && open !== "" && close !== undefined && close !== null && close !== "") {
-        content += '<tr>';
-        content += '<th>時間</th>';
-        content += '<td>';
-        content += open + '〜' + close;
-        content += '</td>';
-        content += '</tr>';
-    }
     var memo = feature.get('備考') ? feature.get('備考') : feature.get('Memo');
     if (memo !== undefined && memo !== null) {
         content += '<tr>';
@@ -341,73 +330,7 @@ Papamamap.prototype.getPopupContent = function(feature) {
         content += '<td>' + memo + '</td>';
         content += '</tr>';
     }
-    var temp = feature.get('一時') ? feature.get('一時') : feature.get('Temp');
-    var holiday = feature.get('休日') ? feature.get('休日') : feature.get('holiday');
-    var night = feature.get('夜間') ? feature.get('夜間') : feature.get('Night');
-    var h24 = feature.get('H24') ? feature.get('H24') : feature.get('H24');
 
-    if (temp !== null || holiday !== null || night !== null || h24 !== null) {
-        content += '<tr>';
-        content += '<th></th>';
-        content += '<td>';
-        if (temp !== undefined && temp !== null) {
-            content += '一時保育 ';
-        }
-        if (holiday !== undefined && holiday !== null) {
-            content += '休日保育 ';
-        }
-        if (night !== undefined && night !== null) {
-            content += '夜間保育 ';
-        }
-        if (h24 !== undefined && h24 !== null) {
-            content += '24時間 ';
-        }
-        content += '</td>';
-        content += '</tr>';
-    }
-
-    var type = feature.get('種別') ? feature.get('種別') : feature.get('Type');
-    if (type == "認可外") {
-        content += '<tr>';
-        content += '<th>監督基準</th>';
-        content += '<td>';
-        var proof = feature.get('証明') ? feature.get('証明') : feature.get('Proof');
-        if (proof !== undefined && proof !== null) {
-            content += '証明書発行済<a href="http://www.city.sapporo.jp/kodomo/kosodate/ninkagai_shisetsu.html" target="_blank">(詳細)</a>';
-        }
-        content += '</td>';
-        content += '</tr>';
-    }
-    if (type == "認可保育所") {
-        content += '<tr>';
-        content += '<th>欠員</th>';
-        content += '<td>';
-        var vacancy = feature.get('Vacancy') ? feature.get('Vacancy') : feature.get('Vacancy');
-        if (vacancy !== undefined && vacancy !== null) {
-            content += '<a href="http://www.city.sapporo.jp/kodomo/kosodate/l4_01.html" target="_blank">空きあり</a>';
-        }
-        var vacancyDate = feature.get('VacancyDate');
-        if (vacancyDate !== undefined && vacancyDate !== null) {
-            content += " (" + vacancyDate + ")";
-        }
-        content += '</td>';
-        content += '</tr>';
-    }
-    var ageS = feature.get('開始年齢') ? feature.get('開始年齢') : feature.get('AgeS');
-    var ageE = feature.get('終了年齢') ? feature.get('終了年齢') : feature.get('AgeE');
-    if (ageS !== undefined && ageS !== null && ageE !== undefined && ageE !== null) {
-        content += '<tr>';
-        content += '<th>年齢</th>';
-        content += '<td>' + ageS + '〜' + ageE + '</td>';
-        content += '</tr>';
-    }
-    var full = feature.get('定員') ? feature.get('定員') : feature.get('Full');
-    if (full !== undefined && full !== null) {
-        content += '<tr>';
-        content += '<th>定員</th>';
-        content += '<td>' + full + '人</td>';
-        content += '</tr>';
-    }
     var tel = feature.get('TEL') ? feature.get('TEL') : feature.get('TEL');
     if (tel !== undefined && tel !== null && tel !== "") {
         content += '<tr>';
@@ -421,13 +344,6 @@ Papamamap.prototype.getPopupContent = function(feature) {
         content += '<tr>';
         content += '<th>住所</th>';
         content += '<td>' + add1 + add2 + '</td>';
-        content += '</tr>';
-    }
-    var owner = feature.get('設置者') ? feature.get('設置者') : feature.get('Owner');
-    if (owner !== undefined && owner !== null) {
-        content += '<tr>';
-        content += '<th>設置者</th>';
-        content += '<td>' + owner + '</td>';
         content += '</tr>';
     }
     var image = feature.get('image');

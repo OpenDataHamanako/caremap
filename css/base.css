@@ -1,70 +1,82 @@
 /* CSS Document */
+
 .ui-content {
-	margin: 0;
-	padding: 0 !important;
+    margin: 0;
+    padding: 0 !important;
 }
+
 .popover-content {
-	min-width: 300px;
+    min-width: 300px;
 }
+
 div#popup-title {
     padding: 5px;
 }
-#marker, #center_marker {
-	display:none;
-	width: 25px;
-	height: 25px;
-	border: 2px solid #800;
-	border-radius: 16px;
-	background-color: #F10;
-	opacity: 0.7;
+
+#marker,
+#center_marker {
+    display: none;
+    width: 25px;
+    height: 25px;
+    border: 2px solid #800;
+    border-radius: 16px;
+    background-color: #F10;
+    opacity: 0.7;
 }
-#markerTitle, #center_markerTitle {
-	display:none;
-	text-decoration: none;
-	color: black;
-	font-size: 12pt;
-	font-weight: bold;
-	text-shadow: black 0.1em 0.1em 0.2em;
+
+#markerTitle,
+#center_markerTitle {
+    display: none;
+    text-decoration: none;
+    color: black;
+    font-size: 12pt;
+    font-weight: bold;
+    text-shadow: black 0.1em 0.1em 0.2em;
 }
 
 #lblKaigo.ui-checkbox-on {
-	background-color: #6EE100;
+    background-color: #6EE100;
 }
 
 #lblIbasho.ui-checkbox-on {
-	background-color: #0362A0;
+    background-color: #0362A0;
 }
 
 #lblDental.ui-checkbox-on {
-	background-color: #FF5C24;
+    background-color: #FF5C24;
 }
 
 #lblJichikai.ui-checkbox-on {
-	background-color: #7379AE;
+    background-color: #7379AE;
 }
 
 #lblHospital.ui-checkbox-on {
-	background-color: #1BA466;
-}
-#lblSalon.ui-checkbox-on {
-	background-color: #AA0000;
-}
-.ol-popup {
-	display: none;
-	position: absolute;
-	background-color: white;
-	width: 300px;
-	bottom: 12px;
-	top: -192px;
-	left: -150px;
-	border-radius: 10px;
-	border: 1px solid #cccccc;
-	-webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,0.5));
-	-moz-box-shadow: 0 1px 4px rgba(0,0,0,0.5);
-	filter: drop-shadow(0 1px 4px rgba(0,0,0,0.5));
+    background-color: #1BA466;
 }
 
+#lblSalon.ui-checkbox-on {
+    background-color: #AA0000;
+}
+
+.ol-popup {
+    display: none;
+    position: absolute;
+    background-color: white;
+    width: 300px;
+    bottom: 12px;
+    top: -192px;
+    left: -150px;
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    -webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.5));
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.5));
+}
+
+
 /*吹き出し風表示用の定義 */
+
+
 /*
 .ol-popup:after, .ol-popup:before {
 	top: 100%;
@@ -76,79 +88,88 @@ div#popup-title {
 	pointer-events: none;
 }
 */
+
 .ol-popup:after {
-	border-top-color: white;
-	border-width: 10px;
-	left: 150px;
-	margin-left: -10px;
+    border-top-color: white;
+    border-width: 10px;
+    left: 150px;
+    margin-left: -10px;
 }
+
 .ol-popup:before {
-	border-top-color: #cccccc;
-	border-width: 11px;
-	left: 150px;
-	margin-left: -11px;
+    border-top-color: #cccccc;
+    border-width: 11px;
+    left: 150px;
+    margin-left: -11px;
 }
 
 .ol-popup-closer {
-	text-decoration: none;
-	position: absolute;
-	top: 2px;
-	right: -8px;
+    text-decoration: none;
+    position: absolute;
+    top: 2px;
+    right: -8px;
 }
+
 .ol-popup-closer:after {
-	content: "x";
+    content: "x";
 }
+
 #popup-closer {
-	top: -15px;
-	right: -15px;
+    top: -15px;
+    right: -15px;
 }
 
 #popup-content th {
-	width: 4.5em;
-	vertical-align: top;
-	background-color: white;
+    width: 4.5em;
+    vertical-align: top;
+    background-color: white;
 }
 
 #popup-content td {
-	vertical-align: top;
-	background-color: white;
+    vertical-align: top;
+    background-color: white;
 }
 
 .move-current-location {
-	position: absolute;
-	top: 270px;
-	left: 8px;
-	background-color: rgba(0,60,136,0.5);
-	border-radius: 4px;
-	padding: 4px;
+    position: absolute;
+    top: 270px;
+    left: 8px;
+    background-color: rgba(0, 60, 136, 0.5);
+    border-radius: 4px;
+    padding: 4px;
 }
+
 .ol-touch .move-current-location {
-	top: 270px;
+    top: 270px;
 }
+
 .move-current-location:hover,
 .move-current-location:focus {
-	text-decoration: none;
-	background-color: #4c6079;
-	background-color: rgba(0,60,136,0.7);
+    text-decoration: none;
+    background-color: #4c6079;
+    background-color: rgba(0, 60, 136, 0.7);
 }
+
 .ui-btn-icon-notext {
-	width: 32px;
-	height: 32px;
+    width: 32px;
+    height: 32px;
 }
 
-#btnHelp, #lblDisplayCircle {
-	width: 45px;
+#btnHelp,
+#lblDisplayCircle {
+    width: 45px;
 }
 
-#lblDisplayCircle, #cbDisplayCircle {
-	display: none;
+#lblDisplayCircle,
+#cbDisplayCircle {
+    display: none;
 }
 
 h3 {
-	margin-top: 0;
-	margin-bottom: 0.5em;
+    margin-top: 0;
+    margin-bottom: 0.5em;
 }
 
 legend {
-	margin-bottom: 0;
+    margin-bottom: 0;
 }

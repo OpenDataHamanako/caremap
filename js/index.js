@@ -74,16 +74,6 @@ $('#mainPage').on('pageshow', function() {
         $('#changeBaseMap').append(option);
     }
 
-    // 最寄駅セレクトボックスの生成
-    // mtl = new MoveToList();
-    // mtl.loadStationJson().then(function() {
-    // 	mtl.appendToMoveToListBox(moveToList);
-    // }, function(){
-    // 	mtl.loadStationJson().then(function() {
-    // 		mtl.appendToMoveToListBox(moveToList);
-    // 	});
-    // });
-
     // 施設クリック時の挙動を定義
     map.on('click', function(evt) {
         if ($('#popup').is(':visible')) {
@@ -121,7 +111,7 @@ $('#mainPage').on('pageshow', function() {
             clearCenterCircle();
         }
 
-        // クリックした場所に保育施設がある場合、ポップアップダイアログを出力する
+        // クリックした場所に施設がある場合、ポップアップダイアログを出力する
         if (feature && "Point" == feature.getGeometry().getType()) {
             var type = feature.get('種別') ? feature.get('種別') : feature.get('Type');
             if (type === undefined) {
